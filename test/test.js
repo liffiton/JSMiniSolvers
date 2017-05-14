@@ -48,3 +48,49 @@ test('add_clause', t => {
     }
 });
 
+test('solve', t => {
+    var s = t.context.s;
+    for (var i = 0 ; i < 3 ; i++) {
+        s.new_var();
+    }
+    s.add_clause([1, 2]);
+    t.is(s.solve(), 1);
+    s.add_clause([-1, 2]);
+    t.is(s.solve(), 1);
+    s.add_clause([1, -2]);
+    t.is(s.solve(), 1);
+    s.add_clause([-1, 3]);
+    t.is(s.solve(), 1);
+    s.add_clause([-1, -3]);
+    t.is(s.solve(), 0);
+});
+
+test('get_model', t => {
+    var s = t.context.s;
+    for (var i = 0 ; i < 3 ; i++) {
+        s.new_var();
+    }
+    s.add_clause([1, 2]);
+    s.solve();
+    var model = s.get_model();
+    t.truthy(model[0] || model[1]);
+    s.add_clause([-1, 2]);
+    s.solve();
+    var model = s.get_model();
+    t.truthy(model[0] || model[1]);
+    t.truthy(!model[0] || model[1]);
+    s.add_clause([1, -2]);
+    s.solve();
+    var model = s.get_model();
+    t.truthy(model[0] || model[1]);
+    t.truthy(!model[0] || model[1]);
+    t.truthy(model[0] || !model[1]);
+    s.add_clause([-1, 3]);
+    s.solve();
+    var model = s.get_model();
+    t.truthy(model[0] || model[1]);
+    t.truthy(!model[0] || model[1]);
+    t.truthy(model[0] || !model[1]);
+    t.truthy(!model[0] || model[2]);
+});
+
