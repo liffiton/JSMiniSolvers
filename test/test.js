@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import {MinisatSolver} from '../dist/minisolvers_umd.js';
+import {MinisatSolver} from '../dist/minisolvers.js';
 
 test.beforeEach(t => {
     t.context.s = new MinisatSolver();
