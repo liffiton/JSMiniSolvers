@@ -1,0 +1,5 @@
+// Allow emscripten output to be used as a commonjs module
+// even if not running under Node.js.
+if (typeof module !== 'undefined') {
+  module['exports'] = Module;
+}

@@ -1,0 +1,32 @@
+<html lang='en'>
+  <body>
+  <script src="libminisat.js">
+  </script>
+  <script>
+var S = Module.ccall('Solver_new', 'number', []);
+Module.ccall('newVar', 'number', ['number', 'number'], [S, 0]);
+Module.ccall('newVar', 'number', ['number', 'number'], [S, 0]);
+console.log(Module.ccall('nVars', 'number', ['number'], [S]));
+console.log(Module.ccall('nClauses', 'number', ['number'], [S]));
+var clause = new Uint8Array(new Int32Array([1, 2]).buffer);
+console.log(clause);
+var x= Module.ccall('addClause', 'number', ['number', 'number', 'array'], [S, 2, clause]);
+console.log(Module.ccall('nVars', 'number', ['number'], [S]));
+console.log(Module.ccall('nClauses', 'number', ['number'], [S]));
+console.log(Module.ccall('solve', 'number', ['number'], [S]));
+var clause = new Uint8Array(new Int32Array([1, -2]).buffer);
+console.log(clause);
+var x= Module.ccall('addClause', 'number', ['number', 'number', 'array'], [S, 2, clause]);
+console.log(Module.ccall('nVars', 'number', ['number'], [S]));
+console.log(Module.ccall('nClauses', 'number', ['number'], [S]));
+console.log(Module.ccall('solve', 'number', ['number'], [S]));
+var clause = new Uint8Array(new Int32Array([-1]).buffer);
+console.log(clause);
+var x= Module.ccall('addClause', 'number', ['number', 'number', 'array'], [S, 1, clause]);
+console.log(Module.ccall('nVars', 'number', ['number'], [S]));
+console.log(Module.ccall('nClauses', 'number', ['number'], [S]));
+console.log(Module.ccall('solve', 'number', ['number'], [S]));
+
+  </script>
+  </body>
+</html>
