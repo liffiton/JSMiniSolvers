@@ -1,7 +1,6 @@
 import test from 'ava';
 
-export default testedclass => {
-    console.log(testedclass);
+export function run_test(testedclass) {
     test.beforeEach(t => {
         t.context.s = new testedclass();
     });
