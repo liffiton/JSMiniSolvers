@@ -1,14 +1,16 @@
 import test from 'ava';
 
-export function run_test(testedclass) {
+export function setup_test(testedclass) {
     test.beforeEach(t => {
         t.context.s = new testedclass();
     });
 
-    test.afterEach(t => {
+    test.afterEach.always(t => {
         t.context.s.delete();
     });
+}
 
+export function run_test() {
     test('Solver_new', t => {
         var s = t.context.s;
         t.truthy(s);
