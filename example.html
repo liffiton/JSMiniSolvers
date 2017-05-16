@@ -1,9 +1,57 @@
+<!DOCTYPE html>
 <html lang='en'>
+  <head>
+    <title>JSMiniSolvers Example</title>
+    <meta charset="UTF-8">
+    <script src="dist/minisolvers.js"></script>
+  </head>
   <body>
-  <script src="dist/minisolvers.js"></script>
-  <script>
-var S = new minisolvers.MinisatSolver();
-console.log(S);
-  </script>
+    <h1>JSMiniSolvers Example</h1>
+    <p>Enter a CNF formula as an array of arrays.</p>
+    <p>For example, for (x1 v x2)(!x1)(!x3), write <tt>[[1,2],[-1],[-3]]</tt>.</p>
+    <p>
+      <textarea id="formula" rows=3 cols=60>[[1,2],[-1],[-3]]</textarea>
+    </p>
+    <p>
+      <button id="go" type="submit">Solve</button>
+    </p>
+    <p>
+      <b>Result:</b> <span id="result"></span>
+    </p>
+    <script language='Javascript'>
+var gobutton = document.getElementById("go");
+var formula = document.getElementById("formula");
+var result = document.getElementById("result");
+
+function solve() {
+  var S = new minisolvers.MinisatSolver();
+  var form = eval(formula.value);
+  for (var i = 0 ; i < form.length ; i++) {
+    var clause = form[i];
+    for (var j = 0 ; j < clause.length ; j++) {
+      var v = clause[j];
+      if (v < 0) {v = -v;}
+      while (v > S.nvars()) {
+        S.new_var();
+      }
+    }
+    S.add_clause(clause);
+  }
+  var res = S.solve();
+  if (res) {
+    var model = S.get_model();
+    var resstr = ""
+    for (var i = 0 ; i < model.length ; i++) {
+      resstr += " x" + (i+1) + "=" + model[i];
+    }
+    result.innerHTML = "SAT: " + resstr;
+  }
+  else {
+    result.innerHTML = "UNSAT";
+  }
+}
+
+gobutton.addEventListener("click", solve);
+    </script>
   </body>
 </html>
