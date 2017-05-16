@@ -34,7 +34,7 @@ class Solver {
         var ptr = this.lib._malloc(4 * nv);
         var modelarr = this.lib.HEAP32.subarray((ptr>>2), (ptr>>2)+nv);
         this.lib.ccall('fillModel', null, ['number', 'number', 'number', 'number'], [this.S, ptr, 0, this.nvars()]);
-        var model = Array.from(modelarr);
+        var model = new Int32Array(modelarr);  // copy array (can't use Array.from or TypedArray.slice() in IE11...)
         this.lib._free(ptr);
         return model;
     }
