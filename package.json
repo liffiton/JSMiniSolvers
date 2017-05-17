@@ -2,7 +2,7 @@
   "name": "minisolvers",
   "version": "1.0.0",
   "description": "Javascript API for the MiniSat and MiniCard constraint solvers.",
-  "main": "dist/minisolvers_umd.js",
+  "main": "dist/minisolvers.js",
   "scripts": {
     "build": "rollup -c",
     "test": "ava"
