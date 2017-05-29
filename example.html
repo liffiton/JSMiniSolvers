@@ -23,7 +23,7 @@ var gobutton = document.getElementById("go");
 var formula = document.getElementById("formula");
 var result = document.getElementById("result");
 
-function solve() {
+function parse() {
   var S = new minisolvers.MinisatSolver();
   var form = eval(formula.value);
   for (var i = 0 ; i < form.length ; i++) {
@@ -37,6 +37,12 @@ function solve() {
     }
     S.add_clause(clause);
   }
+
+  return S;
+}
+
+function solve() {
+  var S = parse();
   var res = S.solve();
   if (res) {
     var model = S.get_model();
