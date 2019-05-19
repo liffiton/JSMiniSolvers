@@ -50,7 +50,7 @@ The repository contains pre-compiled javascript versions of MiniSat and
 MiniCard, so you can build the ``minisolvers.js`` library without needing to
 install or use Emscripten.  If you would like to modify the C++ source of
 either solver and recompile it, however, you will need to [install
-Emscripten](https://kripken.github.io/emscripten-site/docs/getting_started/downloads.html).
+Emscripten](https://emscripten.org/docs/getting_started/downloads.html).
 
 Then, in the ``src/cpp`` directory:
 

@@ -5,11 +5,9 @@ jsfiles = libminisat.js libminicard.js
 r: $(jsfiles)
 d: $(jsfiles)
 
-CFLAGS_REG=-fpic -Wall -Wno-parentheses -Wextra
-CFLAGS_EMSCRIPTEN=--memory-init-file 0 -D __STDC_LIMIT_MACROS -D __STDC_FORMAT_MACROS --post-js postjs.txt -s ALLOW_MEMORY_GROWTH=1
-CFLAGS_SHARED=$(CFLAGS_REG) $(CFLAGS_EMSCRIPTEN)
-r: CFLAGS=-D NDEBUG -O3 --closure 1 $(CFLAGS_SHARED)
-d: CFLAGS=-D DEBUG -O0 --closure 0 -s ASSERTIONS=1 $(CFLAGS_SHARED)
+CFLAGS_EMSCRIPTEN=--memory-init-file 0 -s WASM=0 -s ALLOW_MEMORY_GROWTH=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall"]'
+r: CFLAGS=-D NDEBUG -O3 --closure 1 $(CFLAGS_EMSCRIPTEN)
+d: CFLAGS=-D DEBUG -O0 --closure 0 -s ASSERTIONS=1 $(CFLAGS_EMSCRIPTEN)
 
 SATINC=minisat/
 CARDINC=minicard/

@@ -1,13 +1,16 @@
+
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
+import { uglify } from "rollup-plugin-uglify";
 
 export default {
-    entry: 'src/index.js',
-    dest: 'dist/minisolvers.js',
-    format: 'umd',
-    moduleName: 'minisolvers',
-    sourceMap: true,
-
+    input: 'src/index.js',
+    output: {
+        file: 'dist/minisolvers.js',
+        format: 'umd',
+        name: 'minisolvers',
+        sourcemap: true,
+    },
     plugins: [
         // use rollup-plugin-commonjs to enable "import" of emscripten code
         commonjs({
@@ -19,5 +22,6 @@ export default {
         babel({
             exclude: 'node_modules/**'
         }),
+        uglify(),
     ]
 };
