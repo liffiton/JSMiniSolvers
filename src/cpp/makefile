@@ -5,7 +5,7 @@ jsfiles = libminisat.js libminicard.js
 r: $(jsfiles)
 d: $(jsfiles)
 
-CFLAGS_EMSCRIPTEN=--memory-init-file 0 -s WASM=0 -s ALLOW_MEMORY_GROWTH=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall"]'
+CFLAGS_EMSCRIPTEN=--memory-init-file 0 -s WASM=0 -s ALLOW_MEMORY_GROWTH=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall"]' -s MODULARIZE_INSTANCE
 r: CFLAGS=-D NDEBUG -O3 --closure 1 $(CFLAGS_EMSCRIPTEN)
 d: CFLAGS=-D DEBUG -O0 --closure 0 -s ASSERTIONS=1 $(CFLAGS_EMSCRIPTEN)
 
