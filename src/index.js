@@ -1,17 +1,17 @@
-import libminisat from './cpp/libminisat.js';
-import libminicard from './cpp/libminicard.js';
+import libminisatFactory from './cpp/libminisat.js';
+import libminicardFactory from './cpp/libminicard.js';
 import {Solver} from './solver_base.js';
 
 class MinisatSolver extends Solver {
     constructor() {
-        super(libminisat);
+        super(libminisatFactory);
     }
 }
 
 
 class MinicardSolver extends Solver {
     constructor() {
-        super(libminicard);
+        super(libminicardFactory);
     }
 }
 

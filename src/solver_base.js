@@ -1,6 +1,6 @@
 class Solver {
-    constructor(lib) {
-        this.lib = lib;
+    constructor(libFactory) {
+        this.lib = libFactory();
         this.S = this.lib.ccall('Solver_new', 'number', []);
     }
 
