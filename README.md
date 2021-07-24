@@ -24,8 +24,9 @@ Usage
 -----
 
 Grab the pre-compiled script and optional sourcemap from ``dist/``.  See
-``example.html`` for a simple usage example.  [Try it
-online!](https://liffiton.github.io/JSMiniSolvers/example.html)
+``example.html`` for a simple usage example.
+
+[Try it online!](https://liffiton.github.io/JSMiniSolvers/example.html)
 
  
 Development
